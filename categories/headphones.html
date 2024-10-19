@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h2><a href="../index.html">Back</a></h2>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li>
+                    <a href="#">Category</a>
+                    <ul class="dropdown">
+                        <li><a href="mobiles.html">Mobiles</a></li>
+                        <li><a href="laptops.html">Laptops</a></li>
+                        <li><a href="headphones.html">Headphones</a></li>
+                    </ul>
+                </li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <a href="../cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+    <section class="mob_sec">
+        <section class="headphone">
+        <div class="item">
+            <img src="boat.jpg">
+            <div class="content">
+                <h3 class="name">boat RockerZ 450</h3>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div>
+                <p class="price">$80</p>
+                <p class="spec">wireless-15 Hours Playback</p>                
+                <p>Wireless Bluetooth Headphones with 15 Hours Playback, HD Immersive Audio, 40mm Dynamic Driver</p>
+                <button onclick="addtocart(this)">Add to cart </button>
+            </div>
+            <br>
+        </div>
+        </section>
+        <div class="item">
+            <img src="samsung.png">
+            <div class="content">
+                <h3 class="name">Samsung Level On PRO</h3>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div>
+                <p class="price">$100</p>
+                <p class="spec">wireless-15 Hours Playback</p>                   
+                <p>Wireless Bluetooth Headphones with 15 Hours Playback, HD Immersive Audio, 40mm Dynamic Driver</p>
+                <button onclick="addtocart(this)">Add to cart </button>
+            </div>
+            <br>
+        </div>
+        <div class="item">
+            <img src="apple.png">
+            <div class="content">
+                <h3 class="name">Apple AirPods Max Wireless Headphones</h3>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div>    
+                <p class="price">$300</p>
+                <p class="spec">wireless-15 Hours Playback</p>               
+                <p>Wireless Bluetooth Headphones with 15 Hours Playback, HD Immersive Audio, 40mm Dynamic Driver</p>
+                <button onclick="addtocart(this)">Add to cart </button>
+            </div>
+            <br>
+        </div>
+        <div class="item">
+            <img src="eska.jpg">
+            <div class="content">
+                <h3 class="name">EKSA E900 Wired Stereo Gaming Headset</h3>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div>
+                <p class="price">$200</p>
+                <p class="spec">wireless-15 Hours Playback</p>             
+                <p>Wireless Bluetooth Headphones with 15 Hours Playback and active noise cancellation,HD Immersive Audio </p>
+                <button onclick="addtocart(this)">Add to cart </button>
+            </div>
+            <br>
+        </div>
+    </section>
+    <script>
+            function addtocart(button){
+                const item = button.parentElement;
+                const name=item.querySelector('.name').innerText;
+                const spec=item.querySelector('.spec').innerText;
+                const price=parseFloat(item.querySelector('.price').innerText.replace('$',''));
+    
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ name, spec, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+    
+                alert(`${name} added to cart!`);
+            }
+    </script>
+    </body>
+</body>
+</html>

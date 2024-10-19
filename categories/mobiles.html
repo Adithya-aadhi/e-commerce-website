@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h2><a href="../index.html">Back</a></h2>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li>
+                    <a href="#">Category</a>
+                    <ul class="dropdown">
+                        <li><a href="mobiles.html">Mobiles</a></li>
+                        <li><a href="laptops.html">Laptops</a></li>
+                        <li><a href="headphones.html">Headphones</a></li>
+                    </ul>
+                </li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <a href="../cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+    <section class="mob_sec">
+        <section class="iphone">
+        <div class="item">
+            <img src="iphone16.jpg">
+            <div class="content">
+                <h2 class="name">iphone 16</h2>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div>
+                <p class="price">$799</p>                 
+                <h3 class="spec">8gb ram 128gb</h3>
+                <p>The iPhone 16 boasts an A17 chip for powerful performance and a Super Retina XDR display for stunning visuals, along with enhanced camera features.</p>
+                <button onclick="addtocart(this)">Add to cart</button>
+            </div>
+            <br>
+        </div>
+        </section>
+        <section class="samsung">
+        <div class="item">
+            <img src="galaxy-s24ultra.jpg">
+            <div class="content">
+                <h2 class="name">Samsung Galaxy S24 Ultra</h2>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div>
+                <p class="price">$1000</p>                 
+                <h3 class="spec">16gb ram 256gb</h3>
+                <p>The Samsung Galaxy S24 Ultra features a Snapdragon 8 Gen 3 processor and an AMOLED display, with an advanced camera system for exceptional photography.</p>
+                <button onclick="addtocart(this)">Add to cart</button>
+            </div>
+            <br>
+        </div>
+        <div class="item">
+            <img src="nothing.jpg">
+            <div class="content">
+                <h2 class="name">Nothing Phone 2</h2>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div> 
+                <p class="price">$350</p>               
+                <h3 class="spec">16gb ram 128gb</h3>
+                <p>The Nothing Phone 2 features a unique transparent design with customizable LED notifications and a vibrant AMOLED display. It offers solid performance and a clean Android experience.</p>
+                <button onclick="addtocart(this)">Add to cart</button>
+            </div>
+            <br>
+        </div>
+        <div class="item">
+            <img src="oneplus.jpg">
+            <div class="content">
+                <h2 class="name">OnePlus 9RT</h2>
+                <div class="star-rating">
+                    &#9733; &#9733; &#9733; &#9733; &#9734;
+                </div> 
+                <p class="price">$599</p> 
+                <h3 class="spec">16gb ram 128gb</h3>               
+                <p>The OnePlus 9RT features a high-refresh-rate AMOLED display and a Snapdragon 888 processor, ensuring smooth performance. It also includes a versatile camera system for excellent photography.</p>
+                <button onclick="addtocart(this)">Add to cart</button>
+            </div>
+            <br>
+        </div>
+    </section>
+    <script>
+        function addtocart(button){
+            const item = button.parentElement;
+            const name = item.querySelector('.name').innerText;
+            const price = parseFloat(item.querySelector('.price').innerText.replace('$', ''));
+            const spec = item.querySelector('.spec').innerText;
+            
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name, spec, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`${name} added to cart!`);
+        }
+    </script>
+</body>
+</html>

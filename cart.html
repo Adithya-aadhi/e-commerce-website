@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(99,99,99,1) 48%, rgba(0,212,255,1) 100%);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(99,99,99,1) 48%, rgba(0,212,255,1) 100%);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(99,99,99,1) 48%, rgba(0,212,255,1) 100%);
+            color: white;
+        }
+
+        .total {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #ddd;
+        }
+
+        .remove-btn {
+            color: red;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        button{
+            margin: 5% 45%;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            background-color: black;
+        }
+        button:hover{
+            color: black;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2><a href="mobiles.html" style="color: white; text-decoration: none;">Back to Products</a></h2>
+    </header>
+
+    <h1>Shopping Cart</h1>
+    <form id="cartForm" method="POST" action="save_cart.php">
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Specification</th>
+                    <th>Price ($)</th>
+                    <th>Action</th> 
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+        <div class="total" id="totalPrice">
+            Total: $0
+        </div>
+        <button type="submit">Pay</button>
+    </form>
+
+    <script>
+        function loadCart() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartTableBody = document.querySelector('#cartTable tbody');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            cartTableBody.innerHTML = '';
+
+            if (cartItems.length === 0) {
+                cartTableBody.innerHTML = '<tr><td colspan="4">Your cart is empty.</td></tr>';
+                totalPriceElement.textContent = 'Total: $0';
+                return;
+            }
+
+            let total = 0;
+            cartItems.forEach((item, index) => {
+                total += parseFloat(item.price); 
+                cartTableBody.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.spec}</td>
+                        <td>${parseFloat(item.price).toFixed(2)}</td>
+                        <td><span class="remove-btn" onclick="removeItem(${index})">Remove</span></td>
+                        <input type="hidden" name="product_name[]" value="${item.name}">
+                        <input type="hidden" name="specification[]" value="${item.spec}">
+                        <input type="hidden" name="price[]" value="${item.price}">
+                    </tr>
+                `;
+            });
+            totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.splice(index, 1); 
+            localStorage.setItem('cart', JSON.stringify(cartItems)); 
+            loadCart();
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

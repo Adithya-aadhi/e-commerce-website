@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1>E-commerce website</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Category</a>
+                    <ul class="dropdown">
+                        <li><a href="categories/mobiles.html">Mobiles</a></li>
+                        <li><a href="categories/laptops.html">Laptops</a></li>
+                        <li><a href="categories/headphones.html">Headphones</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+    <section class="home_section">
+        <div class="container1">
+            <img src="iphone16.jpg">
+            <div class="c1">
+                <h3>Apple</h3>
+                <p>Exclusive iPhone 16 deals: Save 20% instantly with select card purchases!</p>
+                <button id="viewip">view</button>
+            </div>
+        </div>
+        <div class="container1">
+            <img src="galaxy-s24ultra.jpg">
+            <div class="c1">
+                <h3>Samsung</h3>
+                <p>Unlock 20% savings on Samsung Galaxy phones with special card offers!</p>
+                <button id="viewsam">view</button>
+            </div>
+        </div>
+        
+        <div class="container1">
+            <img src="mac.jpg">
+            <div class="c1">
+                <h3>Mac Book</h3>
+                <p>Unbeatable Mac offers: Get up to 20% off with eligible card payments!</p>
+                <button id="viewlap">view</button>
+            </div>
+        </div>
+        <div class="container1">
+            <img src="boat.jpg">
+            <div class="c1">
+                <h3>Headphones</h3>
+                <p>Best offers on all top headphones</p>
+                <button id="viewhead">view</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById("viewip").onclick=function(){
+            window.location.href="categories/mobiles.html#iphone";
+        }
+        document.getElementById("viewsam").onclick=function(){
+            window.location.href="categories/mobiles.html#samsung";
+        }
+        document.getElementById("viewlap").onclick=function(){
+            window.location.href="categories/laptops.html#mac";
+        }
+        document.getElementById("viewhead").onclick=function(){
+            window.location.href="categories/headphones.html#headphone";
+        }
+
+
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+    </script>
+</body>
+</html>
